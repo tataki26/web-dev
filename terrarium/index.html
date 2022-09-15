@@ -10,10 +10,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- instruction to the viewport of the broswer to say how should this be rendered -->
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- href: to point out where on machine is style.css -->
+        <link rel="stylesheet" href="./style.css" />
     </head>
     <!-- any text or images in here will be shown in the broswer -->
     <body>
         <!-- the biggest header / there should only be one of these semantically -->
+        <!-- [inline] directly use style attribute: not recommended -> use separate file -->
+        <!-- <h1 style="color: red">My Terrarium</h1> -->
         <h1>My Terrarium</h1>
         <div id="page">
             <div id="left-container" class="container">
@@ -62,6 +66,15 @@
                 <div class="plant-holder">
                     <img class="plant" alt="plant" id="plant14" src="./images/plant14.png" />
                 </div>
+            </div>
+            <div id="terrarium">
+                <div class="jar-top"></div>
+                <div class="jar-walls">
+                    <div class="jar-glossy-long"></div>
+                    <div class="jar-glossy-short"></div>
+                </div>
+                <div class="dirt"></div>
+                <div class="jar-bottom"></div>
             </div>
         </div>
     </body>
