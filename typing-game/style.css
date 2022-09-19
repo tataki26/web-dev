@@ -1,0 +1,37 @@
+/* inside style.css */
+h1 {
+    color:aqua;
+    text-align: center;
+    padding: 3%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20;
+    text-align: center;
+    margin: 50px;
+}
+
+#typed-value {
+    height: 4%;
+    width: 25%;
+    margin: 6px 0 0;
+}
+
+#start {
+    height: 4%;
+    width: 8%;
+    /* up right down lef */
+    margin: 0 0 0 10px;
+    font-size: 16;
+}
+
+/* dot for class */
+.highlight { /* hightlight the word the player should be typing */
+    background-color: yellow;
+}
+
+.error { /* colorize the textbox if what they've typed is incorrect */
+    background-color: lightcoral;
+    border: red;
+}
