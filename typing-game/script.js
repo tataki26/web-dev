@@ -12,16 +12,11 @@ const quotes = [
     'What one man can invent another can discover.',
     'Nothing clears up a case so much as stating it to another person.',
     'Education never ends, Watson. It is a series of lessons, with the greatest for the last.',
-    'Life is like riding a bicycle. To keep your balance, you must keep moving. ',
-    'For every minute you are angry, you lose sixty seconds of happiness. ',
-    'Be yourself; everyone else is already taken. ',
-    'In three words I can sum up everything I\'ve learned about life: it goes on. ',
 ];
 
 // store the list of words and the index of the word the player is currently typing
 let words = [];
 let wordIndex = 0;
-
 // the starting time
 let startTime = Date.now();
 
@@ -79,4 +74,58 @@ document.getElementById('start').addEventListener('click', () => {
   
     // Start the timer
     startTime = new Date().getTime();
-  });
+});
+
+
+//
+// Add typing logic
+//
+
+// start by grabbing the current word
+// value the player has typed thus far
+
+// waterfall logic - check if...
+// 1. the quote is complete
+// 2. the word is complete
+// 3. the word is correct
+// 4. there is an error
+
+// As the player types, input event will be raised
+// check to ensure the player is typing the word correctly
+// handle the current status of the game
+typedValueElement.addEventListener('input', () => {
+    // Get the current word
+    const currentWord = words[wordIndex];
+    // get the current value
+    const typedValue = typedValueElement.value;
+  
+    // 1. quote is complete
+    if (typedValue === currentWord && wordIndex === words.length - 1) {
+      // end of sentence
+      const elapsedTime = new Date().getTime() - startTime;
+      // convert from milliseconds to seconds
+      // display a success message
+      const message = `CONGRATULATIONS! You finished in ${elapsedTime / 1000} seconds.`;
+      messageElement.innerText = message;
+    } else if (typedValue.endsWith(' ') && typedValue.trim() === currentWord) { // 2. word is complete
+      // end of word
+      // clear the typedValueElement for the new word(the next word to be typed)
+      typedValueElement.value = '';
+      // move to the next word
+      wordIndex++;
+      // reset the class name for all elements in quote
+      for (const wordElement of quoteElement.childNodes) {
+        wordElement.className = '';
+      }
+      // set className of the current word to higlight
+      // --> flag it as the next word to type
+      quoteElement.childNodes[wordIndex].className = 'highlight';
+    } else if (currentWord.startsWith(typedValue)) { // 3. word is correct(but not complete)
+      // currently correct
+      // ensure typedValueElement is displayed as default by clearing className
+      typedValueElement.className = '';
+    } else { // 4. there is an error
+      // error state
+      typedValueElement.className = 'error';
+    }
+});
